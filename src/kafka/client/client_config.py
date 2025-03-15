@@ -1,7 +1,5 @@
 import os
 
-from dotenv import load_dotenv
-
 from src.kafka.exceptions import KafkaConfigError
 
 
@@ -32,8 +30,6 @@ class KafkaClientConfig:
         self._validate_config()
 
     def _load_from_env(self):
-        load_dotenv()
-
         for key in self.REQUIRED_KEYS:
             value = os.getenv(key)
             if value:

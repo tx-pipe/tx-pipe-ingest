@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package result;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+// Соответствие UiTokenAmount
+message UiTokenAmount {
+  string amount = 1;
+  int32 decimals = 2;
+  // Используем обёртку, чтобы можно было отслеживать отсутствие значения
+  google.protobuf.DoubleValue uiAmount = 3;
+  string uiAmountString = 4;
+}
+
+// Соответствие TokenBalance
+message TokenBalance {
+  int32 accountIndex = 1;
+  string mint = 2;
+  string owner = 3;
+  string programId = 4;
+  UiTokenAmount uiTokenAmount = 5;
+}
+
+// Соответствие InnerInstruction.
+// Здесь поле instructions представлено как список структур, позволяющих хранить произвольные данные.
+message InnerInstruction {
+  int32 index = 1;
+  repeated google.protobuf.Struct instructions = 2;
+}
+
+// Для представления словаря вида Dict<string, List<string>> (loadedAddresses)
+// определим вспомогательное сообщение.
+message StringList {
+  repeated string values = 1;
+}
+
+// Соответствие Meta
+message Meta {
+  int32 computeUnitsConsumed = 1;
+  // Поле err представлено как произвольное значение (Value)
+  google.protobuf.Value err = 2;
+  int32 fee = 3;
+  repeated InnerInstruction innerInstructions = 4;
+  // loadedAddresses: ключ — строка, значение — список строк
+  map<string, StringList> loadedAddresses = 5;
+  repeated string logMessages = 6;
+  repeated int64 postBalances = 7;
+  repeated TokenBalance postTokenBalances = 8;
+  repeated int64 preBalances = 9;
+  // preTokenBalances и rewards содержат произвольные данные
+  repeated google.protobuf.Value preTokenBalances = 10;
+  repeated google.protobuf.Value rewards = 11;
+  // status: словарь с ключом-строкой и значением произвольного типа
+  map<string, google.protobuf.Value> status = 12;
+}
+
+// Соответствие Header
+message Header {
+  int32 numReadonlySignedAccounts = 1;
+  int32 numReadonlyUnsignedAccounts = 2;
+  int32 numRequiredSignatures = 3;
+}
+
+// Соответствие Instruction.
+// Для опционального поля stackHeight используем обёртку Int32Value.
+message Instruction {
+  repeated int32 accounts = 1;
+  string data = 2;
+  int32 programIdIndex = 3;
+  google.protobuf.Int32Value stackHeight = 4;
+}
+
+// Соответствие Message.
+// Поле addressTableLookups представлено как список произвольных значений.
+message Message {
+  repeated string accountKeys = 1;
+  repeated google.protobuf.Value addressTableLookups = 2;
+  Header header = 3;
+  repeated Instruction instructions = 4;
+  string recentBlockhash = 5;
+}
+
+// Соответствие Transaction
+message Transaction {
+  Message message = 1;
+  repeated string signatures = 2;
+}
+
+// Основной класс Result.
+// Для поля version, которое может быть int или string, используем конструкцию oneof.
+message Result {
+  int64 blockTime = 1;
+  Meta meta = 2;
+  int64 slot = 3;
+  Transaction transaction = 4;
+  oneof version {
+    int64 int_version = 5;
+    string string_version = 6;
+  }
+}

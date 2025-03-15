@@ -1,0 +1,9 @@
+services:
+  sol_tx_pipe:
+    build: .
+    environment:
+      GIT_KEY: ${GIT_KEY}
+      REPO_URL: ${REPO_URL}
+    env_file:
+      - .env
+    command: python main.py

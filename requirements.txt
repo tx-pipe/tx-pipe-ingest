@@ -1,6 +1,11 @@
-confluent-kafka==2.8.2
 python-dotenv==1.0.1
-pydantic==2.10.6
 
 solders==0.26.0
 solana==0.36.6
+
+aiohttp==3.11.13
+starlette==0.46.1
+
+confluent-kafka==2.8.2
+pydantic==2.10.6
+protobuf==6.30.1
