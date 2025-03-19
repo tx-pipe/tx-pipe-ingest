@@ -75,9 +75,9 @@ message Instruction {
 // Соответствие Message.
 // Поле addressTableLookups представлено как список произвольных значений.
 message Message {
-  repeated string accountKeys = 1;
-  repeated google.protobuf.Value addressTableLookups = 2;
-  Header header = 3;
+  Header header = 1;
+  repeated string accountKeys = 2;
+  repeated google.protobuf.Value addressTableLookups = 3;
   repeated Instruction instructions = 4;
   string recentBlockhash = 5;
 }
@@ -89,14 +89,9 @@ message Transaction {
 }
 
 // Основной класс Result.
-// Для поля version, которое может быть int или string, используем конструкцию oneof.
 message Result {
   int64 blockTime = 1;
   Meta meta = 2;
   int64 slot = 3;
   Transaction transaction = 4;
-  oneof version {
-    int64 int_version = 5;
-    string string_version = 6;
-  }
 }

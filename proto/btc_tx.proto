@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package btc;
+
+message ScriptSig {
+  string asm = 1;
+  string hex = 2;
+}
+
+message ScriptPubKey {
+  string asm = 1;
+  string hex = 2;
+  optional string desc = 3;
+  optional string address = 4;
+  string type = 5;
+}
+
+message Vin {
+  string txid = 1;
+  uint32 vout = 2;
+  ScriptSig scriptSig = 3;
+  uint32 sequence = 4;
+  repeated string txinwitness = 5;
+  optional string coinbase = 6;
+}
+
+message Vout {
+  double value = 1;
+  uint32 n = 2;
+  ScriptPubKey scriptPubKey = 3;
+}
+
+message BTCTransaction {
+  string txid = 1;
+  string hash = 2;
+  int32 version = 3;
+  uint32 size = 4;
+  uint32 vsize = 5;
+  uint32 weight = 6;
+  uint32 locktime = 7;
+  repeated Vin vin = 8;
+  repeated Vout vout = 9;
+}
+
+message BTCRPCResponse {
+  optional BTCTransaction result = 1;
+  optional string error = 2;
+  optional string id = 3;
+}
