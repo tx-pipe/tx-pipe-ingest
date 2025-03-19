@@ -1,22 +1,23 @@
 import logging
-from typing import Callable, Any, Awaitable
 
+from typing import Callable, Any, Awaitable
 from solana.rpc.websocket_api import connect
 from solders.solders import RpcLogsResponse, Signature
 
-from src.websockets.base import BaseWebsocketListener
+from src.settings import SOLSettings
+from src.socket_listeners.base import AbstractSocketListener
 
 
-class SolWebsocketListener(BaseWebsocketListener):
-    def __init__(self, ws_url: str = "wss://api.mainnet-beta.solana.com"):
-        super().__init__(ws_url)
+class SOLSocketListener(AbstractSocketListener[SOLSettings]):
+    def __init__(self, settings: SOLSettings):
+        super().__init__(settings)
 
-    async def subscribe(self, on_event: Callable[[Any], Awaitable[Any]]) -> None:
-        async with connect(self.ws_url) as websocket:
+    async def subscribe(self, on_event: Callable[[Signature], Awaitable[Any]]) -> None:
+        async with connect(self.settings.socket_url) as websocket:
             await websocket.logs_subscribe()
             first_resp = await websocket.recv()
             subscription_id = first_resp[0].result
-            logging.info(f"Subscribed to '{self.ws_url}' with sub_id: {subscription_id}")
+            logging.info(f"Subscribed to '{self.settings.socket_url}' with sub_id: {subscription_id}")
             async for msg in websocket:
                 try:
                     log: RpcLogsResponse = msg[0].result.value  # noqa

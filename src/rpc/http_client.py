@@ -6,7 +6,7 @@ import logging
 from json import JSONDecodeError
 from typing import Any, Dict, Optional, Union, List
 from urllib.parse import unquote
-from aiohttp import ClientConnectorError, ContentTypeError
+from aiohttp import ClientConnectorError, ContentTypeError, BasicAuth
 from starlette import status
 
 
@@ -40,11 +40,12 @@ class HttpClient:
         json_: Optional[Dict[str, Any]] = None,
         headers: Optional[Dict[str, str]] = None,
         params: Optional[Dict[str, Any]] = None,
+        auth: Union[BasicAuth, None] = None,
     ) -> HttpClientResponse:
         logger.info(f'Request. Url: {url}')
         try:
             async with aiohttp.ClientSession(headers=headers) as session:
-                async with session.request(method, url, data=data, json=json_, params=params) as response:
+                async with session.request(method, url, data=data, json=json_, params=params, auth=auth) as response:
                     if response.status >= status.HTTP_400_BAD_REQUEST:
                         content = await response.content.read()
                         error_msg = self._try_fetch_error_msg(content)

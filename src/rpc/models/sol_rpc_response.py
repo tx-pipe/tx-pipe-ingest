@@ -1,10 +1,9 @@
 from typing import Optional, Any, List, Dict, Union
-
-from google.protobuf.json_format import ParseDict
 from pydantic import BaseModel
 
-import tx_pb2
-from src.rpc.alchemy.models.tx import Transaction
+
+# All in one file bcause it helps when working with protobuf,
+# which often have all structure in one file
 
 
 class UiTokenAmount(BaseModel):
@@ -40,6 +39,32 @@ class Meta(BaseModel):
     preTokenBalances: List[Any]
     rewards: List[Any]
     status: Dict[str, Optional[Any]]
+
+
+class Header(BaseModel):
+    numReadonlySignedAccounts: int
+    numReadonlyUnsignedAccounts: int
+    numRequiredSignatures: int
+
+
+class Instruction(BaseModel):
+    accounts: List[int]
+    data: str
+    programIdIndex: int
+    stackHeight: Optional[int]
+
+
+class Message(BaseModel):
+    accountKeys: List[str]
+    addressTableLookups: Optional[List[Any]] = None
+    header: Header
+    instructions: List[Instruction]
+    recentBlockhash: str
+
+
+class Transaction(BaseModel):
+    message: Message
+    signatures: List[str]
 
 
 class Result(BaseModel):

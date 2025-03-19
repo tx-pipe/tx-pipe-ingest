@@ -1,27 +1,29 @@
 import asyncio
-import os
 
-from dotenv import load_dotenv
-
-from src.kafka.client.base import BaseKafkaProducer
-from src.kafka.client.client_config import KafkaClientConfig
-from src.rpc.alchemy import AlchemyRpcClient
+from src.proto_converters.converters.sol import SOLProtoConverter
+from src.kafka.kafka_config import KafkaClientConfig
+from src.kafka.clients.producer import KafkaClientProducer
+from src.rpc.clients.sol import SOLRpcClient
 from src.rpc.http_client import HttpClient
-from src.websockets.sol.listener import SolWebsocketListener
-from src.services.sol_pipe import SolPipe
+from src.rpc.models.sol_rpc_response import Result
+from src.settings import Settings
+from src.services.concrete.sol import SolTxPipe
+from src.socket_listeners.listeners.sol import SOLSocketListener
 
 
 async def main():
-    load_dotenv()
+    settings = Settings.new()
 
-    alchemy_rpc_client = AlchemyRpcClient(HttpClient(), os.getenv("ALCHEMY_API_KEY"))
+    alchemy_rpc_client = SOLRpcClient(HttpClient(), settings.sol)
 
-    websocket_listener = SolWebsocketListener()
+    websocket_listener = SOLSocketListener(settings.sol)
 
-    kafka_config = KafkaClientConfig(from_env=True)
-    kafka_producer = BaseKafkaProducer(kafka_config, 'sol-raw-txs')
+    kafka_config = KafkaClientConfig.from_settings(settings.kafka)
+    kafka_producer = KafkaClientProducer(kafka_config)
 
-    sol_pipe = SolPipe(alchemy_rpc_client, websocket_listener, kafka_producer)
+    sol_converter = SOLProtoConverter(Result)
+
+    sol_pipe = SolTxPipe(alchemy_rpc_client, websocket_listener, kafka_producer, sol_converter)
     await sol_pipe.run()
 
 
