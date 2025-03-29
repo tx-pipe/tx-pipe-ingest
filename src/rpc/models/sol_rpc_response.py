@@ -67,15 +67,11 @@ class Transaction(BaseModel):
     signatures: List[str]
 
 
-class Result(BaseModel):
+class ConfirmedTransaction(BaseModel):
     blockTime: int
     meta: Meta
-    slot: int
     transaction: Transaction
-    version: Union[int, str]
 
 
 class RpcResponse(BaseModel):
-    jsonrpc: str
-    result: Result
-    id: int
+    result: ConfirmedTransaction

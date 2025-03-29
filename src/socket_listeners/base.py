@@ -12,6 +12,6 @@ class AbstractSocketListener(ABC, Generic[T]):
         self.settings = settings
 
     @abstractmethod
-    async def subscribe(self, on_event: Callable[[Any], Awaitable[Any]]) -> None:
+    async def subscribe(self, on_event: Callable[[Any, Any], Awaitable[Any]], *args, **kwargs) -> None:
         """Subscribe to socket events"""
         pass

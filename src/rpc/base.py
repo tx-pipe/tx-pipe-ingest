@@ -10,6 +10,7 @@ from src.settings.factory import SettingsFactory
 
 T = TypeVar('T', bound=SettingsFactory)
 TX = TypeVar('TX', bound=BaseModel)
+TxIdentifier = TypeVar('TxIdentifier')
 
 
 class AbstractRpcClient(ABC):
@@ -32,5 +33,5 @@ class AbstractRpcClient(ABC):
         pass
 
     @abstractmethod
-    async def get_tx(self, signature) -> TX:
+    async def get_tx(self, tx_identifier: TxIdentifier) -> TX:
         pass
