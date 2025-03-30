@@ -10,7 +10,7 @@ from src.settings import Settings
 
 
 async def main():
-    settings = Settings.new()
+    settings = Settings()  # noqa
     btc_rpc_client = BTCRpcClient(HttpClient(), settings.btc)
     btc_socket_listener = BTCSocketListener(settings.btc)
     kafka_config = KafkaClientConfig.from_settings(settings.kafka)

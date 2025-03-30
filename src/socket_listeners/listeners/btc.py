@@ -14,7 +14,7 @@ class BTCSocketListener(AbstractSocketListener[BTCSettings]):
     async def subscribe(self, on_event: Callable[[bytes, Any], Awaitable[Any]], *args, **kwargs) -> None:
         context = zmq.Context()
         socket = context.socket(zmq.SUB)
-        socket.connect(self.settings.zmq_tcp)
+        socket.connect(self.settings.zmq_tcp_address)
         socket.setsockopt_string(zmq.SUBSCRIBE, self.settings.zmq_stream_type)
         while True:
             try:

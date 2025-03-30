@@ -1,10 +1,10 @@
 from abc import abstractmethod, ABC
 from typing import Callable, Any, Awaitable, TypeVar, Generic
 
-from src.settings.factory import SettingsFactory
+from pydantic_settings import BaseSettings
 
 
-T = TypeVar('T', bound=SettingsFactory)
+T = TypeVar('T', bound=BaseSettings)
 
 
 class AbstractSocketListener(ABC, Generic[T]):

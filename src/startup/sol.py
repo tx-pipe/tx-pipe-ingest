@@ -10,7 +10,7 @@ from src.settings import Settings
 
 
 async def main():
-    settings = Settings.new()
+    settings = Settings()  # noqa
     sol_rpc_client = SOLRpcClient(HttpClient(), settings.sol)
     sol_socket_listener = SOLSocketListener(settings.sol)
     kafka_config = KafkaClientConfig.from_settings(settings.kafka)

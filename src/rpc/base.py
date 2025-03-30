@@ -3,12 +3,12 @@ from abc import ABC, abstractmethod
 from typing import Optional, Any, Dict, TypeVar
 
 from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 
 from src.rpc.http_client import HttpClient, HttpClientResponse
-from src.settings.factory import SettingsFactory
 
 
-T = TypeVar('T', bound=SettingsFactory)
+T = TypeVar('T', bound=BaseSettings)
 TX = TypeVar('TX', bound=BaseModel)
 TxIdentifier = TypeVar('TxIdentifier')
 

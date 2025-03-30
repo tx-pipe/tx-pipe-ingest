@@ -1,24 +1,17 @@
-import os
-from dotenv import load_dotenv
-from pydantic import BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from src.settings.factories.btc import BTCSettings
-from src.settings.factories.kafka import KafkaSettings
-from src.settings.factories.sol import SOLSettings
+from src.settings.btc import BTCSettings
+from src.settings.kafka import KafkaSettings
+from src.settings.sol import SOLSettings
 
 
-class Settings(BaseModel):
+class Settings(BaseSettings):
     btc: BTCSettings
     sol: SOLSettings
     kafka: KafkaSettings
 
-    @classmethod
-    def new(cls) -> 'Settings':
-        load_dotenv()
-        settings_dict = dict(os.environ)
-
-        return Settings(
-            btc=BTCSettings.from_dict(settings_dict),
-            kafka=KafkaSettings.from_dict(settings_dict),
-            sol=SOLSettings.from_dict(settings_dict),
-        )
+    model_config = SettingsConfigDict(
+        case_sensitive=False,
+        env_file='.env',
+        env_nested_delimiter='__'
+    )
