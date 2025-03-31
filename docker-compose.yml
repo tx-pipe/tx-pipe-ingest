@@ -1,9 +1,11 @@
 services:
-  sol_tx_pipe:
-    build: .
-    environment:
-      GIT_KEY: ${GIT_KEY}
-      REPO_URL: ${REPO_URL}
+  tx-pipe-btc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        INSTALL_DEV: "false"
+        BLOCKCHAIN_NAME: "btc"
+    image: tx-pipe:btc
     env_file:
       - .env
-    command: python main.py
