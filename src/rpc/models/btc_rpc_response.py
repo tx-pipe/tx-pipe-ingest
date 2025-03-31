@@ -16,12 +16,14 @@ class ScriptPubKey(BaseModel):
 
 
 class Vin(BaseModel):
-    txid: str
-    vout: int
-    scriptSig: ScriptSig
-    sequence: int
+    txid: Optional[str] = None
+    vout: Optional[int] = None
+    scriptSig: Optional[ScriptSig] = None
     txinwitness: Optional[List[str]] = None
+
     coinbase: Optional[str] = None
+
+    sequence: int
 
 
 class Vout(BaseModel):
