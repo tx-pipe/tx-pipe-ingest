@@ -1,7 +1,7 @@
 from typing import Dict, Any
 
-from src.kafka.exceptions import KafkaConfigError
-from src.settings import KafkaSettings
+from tx_pipe_ingest.kafka.exceptions import KafkaConfigError
+from tx_pipe_ingest.settings import KafkaSettings
 
 
 class KafkaClientConfig:

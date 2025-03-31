@@ -1,10 +1,10 @@
 from aiohttp import FormData
 from typing import Optional, Any, Dict
 
-from src.rpc.base import AbstractRpcClient
-from src.settings import SOLSettings
-from src.rpc.models.sol_rpc_response import RpcResponse
-from src.rpc.http_client import HttpClient, HttpClientResponse
+from tx_pipe_ingest.rpc.base import AbstractRpcClient
+from tx_pipe_ingest.settings import SOLSettings
+from tx_pipe_ingest.rpc.models.sol_rpc_response import RpcResponse
+from tx_pipe_ingest.rpc.http_client import HttpClient, HttpClientResponse
 
 
 class SOLRpcClient(AbstractRpcClient):

@@ -1,8 +1,8 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from src.settings.btc import BTCSettings
-from src.settings.kafka import KafkaSettings
-from src.settings.sol import SOLSettings
+from tx_pipe_ingest.settings.btc import BTCSettings
+from tx_pipe_ingest.settings.kafka import KafkaSettings
+from tx_pipe_ingest.settings.sol import SOLSettings
 
 
 class Settings(BaseSettings):

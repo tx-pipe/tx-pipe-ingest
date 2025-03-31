@@ -1,10 +1,10 @@
 import logging
 from typing import TypeVar, Generic
 
-from src.kafka.clients.producer import KafkaClientProducer
-from src.protobuf.base import AbstractProtoConverter
-from src.socket_listeners.base import AbstractSocketListener
-from src.rpc.base import AbstractRpcClient
+from tx_pipe_ingest.kafka.clients.producer import KafkaClientProducer
+from tx_pipe_ingest.protobuf.base import AbstractProtoConverter
+from tx_pipe_ingest.socket_listeners.base import AbstractSocketListener
+from tx_pipe_ingest.rpc.base import AbstractRpcClient
 
 logger = logging.getLogger(__name__)
 

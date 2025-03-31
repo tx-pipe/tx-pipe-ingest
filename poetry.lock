@@ -1423,4 +1423,4 @@ sol = ["solana", "solders"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "8588234f04e45dd5259a12cfff5aa9eb58ed3f0d7b0e2cd1d125da024d62ff6a"
+content-hash = "12374f0b6d444b971224e218990214c4777c3c331cc56f08fb12746c46472f77"

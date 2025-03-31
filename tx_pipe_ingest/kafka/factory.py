@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.kafka.kafka_config import KafkaClientConfig
+from tx_pipe_ingest.kafka.kafka_config import KafkaClientConfig
 
 
 class AbstractKafkaClient(ABC):

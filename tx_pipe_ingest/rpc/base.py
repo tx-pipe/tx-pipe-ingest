@@ -5,7 +5,7 @@ from typing import Optional, Any, Dict, TypeVar
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
-from src.rpc.http_client import HttpClient, HttpClientResponse
+from tx_pipe_ingest.rpc.http_client import HttpClient, HttpClientResponse
 
 
 T = TypeVar('T', bound=BaseSettings)

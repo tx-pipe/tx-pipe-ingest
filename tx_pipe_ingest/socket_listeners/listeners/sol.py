@@ -4,8 +4,8 @@ from typing import Callable, Any, Awaitable
 from solana.rpc.websocket_api import connect
 from solders.solders import RpcLogsResponse
 
-from src.settings import SOLSettings
-from src.socket_listeners.base import AbstractSocketListener
+from tx_pipe_ingest.settings import SOLSettings
+from tx_pipe_ingest.socket_listeners.base import AbstractSocketListener
 
 
 class SOLSocketListener(AbstractSocketListener[SOLSettings]):

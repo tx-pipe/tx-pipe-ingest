@@ -3,8 +3,8 @@ import zmq
 
 from typing import Callable, Any, Awaitable
 
-from src.socket_listeners.base import AbstractSocketListener
-from src.settings import BTCSettings
+from tx_pipe_ingest.socket_listeners.base import AbstractSocketListener
+from tx_pipe_ingest.settings import BTCSettings
 
 
 class BTCSocketListener(AbstractSocketListener[BTCSettings]):

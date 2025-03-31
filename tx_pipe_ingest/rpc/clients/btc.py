@@ -1,10 +1,10 @@
 from aiohttp import FormData, BasicAuth
 from typing import Optional, Any, Dict
 
-from src.rpc.base import AbstractRpcClient
-from src.rpc.models.btc_rpc_response import BTCRPCResponse
-from src.settings import BTCSettings
-from src.rpc.http_client import HttpClient, HttpClientResponse
+from tx_pipe_ingest.rpc.base import AbstractRpcClient
+from tx_pipe_ingest.rpc.models.btc_rpc_response import BTCRPCResponse
+from tx_pipe_ingest.settings import BTCSettings
+from tx_pipe_ingest.rpc.http_client import HttpClient, HttpClientResponse
 
 
 class BTCRpcClient(AbstractRpcClient):

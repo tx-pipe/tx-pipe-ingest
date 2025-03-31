@@ -11,11 +11,11 @@ def main():
     args = parser.parse_args()
 
     if args.blockchain == 'sol':
-        from src.startup.sol import main
+        from tx_pipe_ingest.startup.sol import main
         asyncio.run(main())
 
     elif args.blockchain == 'btc':
-        from src.startup.btc import main
+        from tx_pipe_ingest.startup.btc import main
         asyncio.run(main())
 
 

@@ -1,8 +1,8 @@
 from typing import Type, Dict, Any, Optional
 
 from generated import sol_tx_pb2
-from src.protobuf.base import AbstractProtoConverter
-from src.rpc.models.sol_rpc_response import (
+from tx_pipe_ingest.protobuf.base import AbstractProtoConverter
+from tx_pipe_ingest.rpc.models.sol_rpc_response import (
     ConfirmedTransaction, RpcResponse, UiTokenAmount, TokenBalance,
     InnerInstruction, Header, Instruction, Message, Transaction, Meta
 )
