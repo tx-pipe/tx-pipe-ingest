@@ -3,3 +3,18 @@ venv
 .env
 .idea
 **/__pycache__
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Python build
+build/
+dist/
+*.egg-info/
+*.egg
+
+*.log
+*.tmp
