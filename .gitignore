@@ -4,6 +4,8 @@ venv
 .idea
 **/__pycache__
 
+tx_pipe_ingest/generated/
+
 # IDE
 .vscode/
 .idea/
