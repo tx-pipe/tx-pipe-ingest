@@ -1,3 +1,39 @@
-.venv
-venv
-.idea
+# Virtual env
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Local settings Poetry
+poetry.lock
+
+# Python build
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git
+.git/
+.gitignore
+
+*.log
+*.tmp

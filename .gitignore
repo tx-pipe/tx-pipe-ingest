@@ -1,5 +1,84 @@
-.venv
-venv
+# --- Python Virtual Environments ---
+# Standard names for virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Poetry specific cache/config (usually not needed to ignore, but sometimes useful)
+.poetry/
+
+# --- Secrets ---
+# Environment variables file
 .env
-.idea
-**/__pycache__
+*.env.*
+
+# --- Bytecode and Cache ---
+# Python cache files
+__pycache__/
+*.py[cod] # .pyc, .pyo, .pyd (covers bytecode and Windows extensions)
+
+# --- Generated Protobuf ---
+# Directory for downloaded .proto source files
+tx_pipe_ingest/proto/
+# Parent directory for all generated code (including proto)
+tx_pipe_ingest/generated/
+
+# --- Build Artifacts ---
+# Standard Python build directories and files
+build/
+dist/
+*.egg-info/
+*.egg
+# Wheel cache
+.wheels/
+
+# --- Test Artifacts ---
+# Pytest cache
+.pytest_cache/
+# Coverage reports
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+
+# --- IDE and Editor Files ---
+# VSCode
+.vscode/
+# PyCharm / IntelliJ
+.idea/
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+# Vim swap files
+*.sw[a-p]
+*~
+# Emacs backup files
+.#*
+
+# --- OS Generated Files ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Windows thumbnail cache
+Thumbs.db
+ehthumbs.db
+
+# --- Log and Temporary Files ---
+*.log
+*.tmp
+*.bak
+*.orig
+
+# --- Other ---
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+# Mypy cache
+.mypy_cache/
+# Ruff cache
+.ruff_cache/
+# Pre-commit cache (if used)
+.pre-commit-config.yaml.lock
