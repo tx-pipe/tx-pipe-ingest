@@ -42,7 +42,7 @@ class HttpClient:
         params: Optional[Dict[str, Any]] = None,
         auth: Union[BasicAuth, None] = None,
     ) -> HttpClientResponse:
-        logger.info(f'Request. Url: {url}')
+        logger.debug(f'Request. Url: {url}')
         try:
             async with aiohttp.ClientSession(headers=headers) as session:
                 async with session.request(method, url, data=data, json=json_, params=params, auth=auth) as response:
@@ -50,7 +50,7 @@ class HttpClient:
                         content = await response.content.read()
                         error_msg = self._try_fetch_error_msg(content)
                         if error_msg is None:
-                            logger.info(f'Failed to get error message from external service. Url: {url}')
+                            logger.error(f'Failed to get error message from external service. Url: {url}')
                         raise HttpClientException(
                             f'Error when accessing external service. Url: {url}, error: {error_msg}'
                         )
