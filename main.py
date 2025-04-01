@@ -2,7 +2,10 @@ import argparse
 import asyncio
 import logging
 
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 
 def main():
