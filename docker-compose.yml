@@ -4,8 +4,14 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        INSTALL_DEV: "false"
         BLOCKCHAIN_NAME: "btc"
+      secrets:
+        - dotenv
     image: tx-pipe:btc
     env_file:
       - .env
+
+
+secrets:
+  dotenv:
+    file: .env

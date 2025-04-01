@@ -2,7 +2,7 @@ from typing import Type
 
 from tx_pipe_ingest.protobuf.base import AbstractProtoConverter
 from tx_pipe_ingest.rpc.models.btc_rpc_response import BTCRPCResponse as PydanticBTCRPCResponse
-from generated.btc_tx_pb2 import BTCMessage  # noqa
+from tx_pipe_ingest.generated.proto.btc_raw_tx_value_pb2 import BTCMessage
 
 
 class BTCProtoConverter(AbstractProtoConverter[PydanticBTCRPCResponse]):
