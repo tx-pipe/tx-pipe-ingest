@@ -10,7 +10,7 @@ ARG BLOCKCHAIN_NAME=""
 COPY pyproject.toml poetry.lock* ./
 
 RUN poetry config virtualenvs.in-project true && \
-    INSTALL_CMD_BASE="poetry install --no-root --sync --no-interaction" && \
+    INSTALL_CMD_BASE="poetry sync --no-root --no-interaction" && \
     GROUP_FLAGS="--with dev" && \
     EXTRAS_ARGS="" && \
     if [ -n "$BLOCKCHAIN_NAME" ]; then \
@@ -23,7 +23,7 @@ COPY scripts ./scripts
 COPY tx_pipe_ingest ./tx_pipe_ingest
 COPY main.py .
 
-RUN --mount=type=secret,id=dotenv,src=.env \
+RUN --mount=type=secret,id=dotenv,target=/app/.env \
     poetry run poe generate-protos
 
 
