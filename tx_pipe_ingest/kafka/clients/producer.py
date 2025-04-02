@@ -1,7 +1,7 @@
 from typing import Union
 from confluent_kafka import Producer
 
-from tx_pipe_ingest.kafka.factory import AbstractKafkaClient
+from tx_pipe_ingest.kafka.base import AbstractKafkaClient
 from tx_pipe_ingest.kafka.kafka_config import KafkaClientConfig
 
 
