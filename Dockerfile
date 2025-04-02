@@ -1,4 +1,4 @@
-FROM python:3.12 as builder
+FROM python:3.12 AS builder
 
 
 RUN pip install --upgrade pip poetry
@@ -27,7 +27,7 @@ RUN --mount=type=secret,id=dotenv,target=/app/.env \
     poetry run poe generate-protos
 
 
-FROM python:3.12-slim as runtime
+FROM python:3.12-slim AS runtime
 
 WORKDIR /app
 
@@ -48,4 +48,4 @@ USER appuser
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONUNBUFFERED=1
 
-CMD python main.py $BLOCKCHAIN_NAME
+CMD ["sh", "-c", "python main.py \"$BLOCKCHAIN_NAME\""]

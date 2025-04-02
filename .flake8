@@ -1,2 +1,5 @@
 [flake8]
 max-line-length = 122
+exclude =
+    tx_pipe_ingest/proto,
+    tx_pipe_ingest/generated
