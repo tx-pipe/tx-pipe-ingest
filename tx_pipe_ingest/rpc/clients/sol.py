@@ -3,7 +3,7 @@ from typing import Optional, Any, Dict
 
 from tx_pipe_ingest.rpc.base import AbstractRpcClient
 from tx_pipe_ingest.settings import SOLSettings
-from tx_pipe_ingest.rpc.models.sol_rpc_response import RpcResponse
+from tx_pipe_ingest.rpc.models.sol_rpc_response import SOLRPCResponse
 from tx_pipe_ingest.rpc.http_client import HttpClient, HttpClientResponse
 
 
@@ -37,7 +37,7 @@ class SOLRpcClient(AbstractRpcClient):
             params=params,
         )
 
-    async def get_tx(self, tx_identifier: str) -> RpcResponse:
+    async def get_tx(self, tx_identifier: str) -> SOLRPCResponse:
         payload = {
             "id": 1,
             "jsonrpc": "2.0",
@@ -52,4 +52,4 @@ class SOLRpcClient(AbstractRpcClient):
             ]
         }
         response = await self.request('POST', json=payload)
-        return RpcResponse(**response.body)
+        return SOLRPCResponse(**response.body)

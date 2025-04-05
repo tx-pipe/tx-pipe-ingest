@@ -12,6 +12,19 @@ services:
     env_file:
       - .env
 
+  tx-pipe-sol:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BLOCKCHAIN_NAME: "sol"
+      secrets:
+        - dotenv
+    image: tx-pipe:sol-latest
+    env_file:
+      - .env
+
 secrets:
   dotenv:
     file: .env.build
