@@ -1,9 +1,12 @@
+# Copyright (c) 2025 dffdeeq
+# SPDX-License-Identifier: MIT
+
 import argparse
 import asyncio
 import logging
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 

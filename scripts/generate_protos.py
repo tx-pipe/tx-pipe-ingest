@@ -1,3 +1,6 @@
+# Copyright (c) 2025 dffdeeq
+# SPDX-License-Identifier: MIT
+
 import os
 import sys
 import subprocess
@@ -8,9 +11,9 @@ from dotenv import load_dotenv
 from typing import List, Optional, Tuple
 
 
-load_dotenv()
+load_dotenv(dotenv_path='.env.build')
 PROJECT_ROOT = Path(__file__).parent.parent.resolve()
-DEFAULT_PROTO_DIR = PROJECT_ROOT / "tx_pipe_ingest" / "proto"
+DEFAULT_PROTO_DIR = PROJECT_ROOT / "proto"
 DEFAULT_GENERATED_DIR = PROJECT_ROOT / "tx_pipe_ingest" / "generated" / "proto"
 
 SCHEMA_REGISTRY_URL = os.getenv("CONFLUENT_SR_URL")
@@ -44,8 +47,8 @@ def fetch_schema(
         try:
             return response.text
         except Exception as e:
-             print(f"Warning: Could not decode response text for {subject}: {e}", file=sys.stderr)
-             return None
+            print(f"Warning: Could not decode response text for {subject}: {e}", file=sys.stderr)
+            return None
     except requests.exceptions.RequestException as e:
         print(f"Error fetching schema for subject '{subject}': {e}", file=sys.stderr)
         return None
@@ -90,7 +93,7 @@ def generate_python_code(
             sys.executable, "-m", "grpc_tools.protoc",
             f"-I{proto_dir}",
             f"--python_out={generated_dir}",
-            f"--pyi_out={generated_dir}", # Generate type hints
+            f"--pyi_out={generated_dir}",  # Generate type hints
         ] + proto_paths_str
 
         print(f"Running protoc: {' '.join(map(str, command))}")
@@ -101,7 +104,8 @@ def generate_python_code(
             return False
         else:
             print("Protoc execution successful.")
-            if result.stdout: print(f"Protoc output:\n{result.stdout}")
+            if result.stdout:
+                print(f"Protoc output:\n{result.stdout}")
             return True
     except Exception as e:
         print(f"An error occurred during code generation: {e}", file=sys.stderr)

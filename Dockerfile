@@ -23,7 +23,7 @@ COPY scripts ./scripts
 COPY tx_pipe_ingest ./tx_pipe_ingest
 COPY main.py .
 
-RUN --mount=type=secret,id=dotenv,target=/app/.env \
+RUN --mount=type=secret,id=dotenv,target=/app/.env.build \
     poetry run poe generate-protos
 
 

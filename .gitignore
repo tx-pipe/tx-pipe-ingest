@@ -11,7 +11,7 @@ ENV/
 # --- Secrets ---
 # Environment variables file
 .env
-*.env.*
+.env.*
 
 # --- Bytecode and Cache ---
 # Python cache files
@@ -20,7 +20,7 @@ __pycache__/
 
 # --- Generated Protobuf ---
 # Directory for downloaded .proto source files
-tx_pipe_ingest/proto/
+proto/
 # Parent directory for all generated code (including proto)
 tx_pipe_ingest/generated/
 

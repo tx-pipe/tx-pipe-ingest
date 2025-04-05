@@ -1,8 +1,8 @@
-from typing import Optional, Any, List, Dict, Union
+from typing import Optional, Any, List, Dict
 from pydantic import BaseModel
 
 
-# All in one file bcause it helps when working with protobuf,
+# Keep models in one file bcause it helps when working with protobuf,
 # which often have all structure in one file
 
 
@@ -73,5 +73,5 @@ class ConfirmedTransaction(BaseModel):
     transaction: Transaction
 
 
-class RpcResponse(BaseModel):
+class SOLRPCResponse(BaseModel):
     result: ConfirmedTransaction
