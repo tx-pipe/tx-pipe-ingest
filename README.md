@@ -43,7 +43,7 @@ These instructions will get you a copy of the project up and running on your loc
 3.  **Install Dependencies:**
     Use Poetry to install project dependencies, including development tools needed for code generation.
     ```bash
-    poetry install --with dev
+    poetry install --with dev --all-extras
     ```
 
 4.  **Generate Protobuf Code:**
