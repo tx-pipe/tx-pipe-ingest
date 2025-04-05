@@ -1,5 +1,6 @@
 services:
   tx-pipe-btc:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,10 +8,10 @@ services:
         BLOCKCHAIN_NAME: "btc"
       secrets:
         - dotenv
-    image: tx-pipe:btc
+    image: tx-pipe:btc-latest
     env_file:
       - .env
 
 secrets:
   dotenv:
-    file: .env
+    file: .env.build

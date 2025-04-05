@@ -1,3 +1,6 @@
+# Copyright (c) 2025 dffdeeq
+# SPDX-License-Identifier: MIT
+
 import logging
 from typing import TypeVar, Generic
 

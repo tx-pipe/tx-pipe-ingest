@@ -2,6 +2,10 @@ from typing import Optional, List
 from pydantic import BaseModel
 
 
+# Keep models in one file bcause it helps when working with protobuf,
+# which often have all structure in one file
+
+
 class ScriptSig(BaseModel):
     asm: str
     hex: str
