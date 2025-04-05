@@ -1,7 +1,7 @@
 # Copyright (c) 2025 dffdeeq
 # SPDX-License-Identifier: MIT
 
-from typing import Type, Dict, Any, List
+from typing import Type, Dict, Any
 
 from tx_pipe_ingest.protobuf.base import AbstractProtoConverter
 from tx_pipe_ingest.rpc.models.sol_rpc_response import SOLRPCResponse, TokenBalance, UiTokenAmount
