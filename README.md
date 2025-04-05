@@ -4,8 +4,13 @@
 Simple representation of tx-pipe (data section) infrastructure:
 ![tx-pipe data section diagram](./docs/images/tx-pipe-infra-01.png)
 
+---
+
 And tx-pipe-ingest itself in detail:
 ![tx-pipe-ingest diagram](./docs/images/tx-pipe-ingest-01.png)
+
+---
+
 
 ## Getting Started
 
